@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305004952) do
+ActiveRecord::Schema.define(version: 20140311164223) do
 
   create_table "addresses", force: true do |t|
     t.string   "continent"
@@ -46,16 +46,18 @@ ActiveRecord::Schema.define(version: 20140305004952) do
     t.text     "description"
     t.date     "date_started"
     t.boolean  "verified"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "organizations", ["user_id"], name: "index_organizations_on_user_id", using: :btree
-
   create_table "organizations_subjects", id: false, force: true do |t|
     t.integer "organization_id", null: false
     t.integer "subject_id",      null: false
+  end
+
+  create_table "organizations_users", id: false, force: true do |t|
+    t.integer "organization_id", null: false
+    t.integer "user_id",         null: false
   end
 
   create_table "roles", force: true do |t|
