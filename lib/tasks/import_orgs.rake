@@ -19,18 +19,16 @@ end
 #   input_org_address = JSON.parse(File.read('data_import/serendipity_data.json'))
 #   input_org_address["university"].each do |u|
 
-#     org_id = Organization.find_by_name(universityName: "name").id
+#     org_id = Organization.find_by_name(u["universityName"]).id
 
-#     address = Address.new (
-#                             org_id: "organization_id",
-#                             universityLat: "lat",
-#                             universityLong: "long",
-#                             universityCountry: "country",
-#                             universityContinent: "continent",
-#                             universityCity: "city",
-#                             universityAddress: "address"
+#     address = Address.new(
+#                             organization_id: org_id,
+#                             lat: u["universityLat"],
+#                             long: u["universityLong"],
+#                             country: u["universityCountry"],
+#                             continent: u["universityContinent"],
+#                             city: u["universityCity"],
+#                             address: u["universityAddress"]
 #       )
-
-
 #   end
 # end
