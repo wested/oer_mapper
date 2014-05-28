@@ -1,0 +1,1 @@
+var oerMapperServices = angular.module('oerMapperServices', ['ngResource']);

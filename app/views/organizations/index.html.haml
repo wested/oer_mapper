@@ -1,0 +1,55 @@
+%div#map-container
+  %div#map
+
+%a{"pageslide" => "left", "href"=>"#legend", "ps-speed"=>"0.5", "ps-parent" => "map-container","ps-custom-position"=>"absolute"} Link text
+
+%div#content{"ng-controller"=>'OrganizationCtrl'}
+
+  %button{"ng-click" => 'getOrgs()'} Get Orgs
+
+  %div{"ng-show" => 'organizations.length > 0'}
+    %table
+      %thead>
+        %tr
+          %th{colspan:"4"} Organizations
+      %tbody>
+        = render "organizations/org_row"
+
+.page-slide#legend
+  .row
+    .col-md-1.col-md-offset-9
+
+      %button{id: "legend-close", type: "button", class:"btn btn-default btn-lg"}
+        %span{class:"glyphicon glyphicon-circle-arrow-left"}
+
+
+  .row
+    .col-md-10.col-md-offset-1
+      %p
+        The OER World Map is an interactive map of OER providers around the world and a tool to explore information about OER, to draw connections, and to see new possibilities for partnerships, learning, and topics you care about.
+      %p
+        Search for an OER provider by keyword, or select a subject area to display OER Providers with OER Materials in this area.
+  .row.search
+    .col-md-7.col-md-offset-1.label
+      SEARCH BY KEYWORD
+  .row
+    .col-md-10.col-md-offset-1
+      %input.form-control{"ng-model"=>"query"}
+
+%script{:type=>"text/x-jqote-template", :id=>"marker_tmpl"}
+  <![CDATA[
+  %h3
+    %a{:href => "<*= this.url *>".html_safe, :target => "_blank"} <*= this.name *>
+  %div
+    %strong Address:
+    <*= this.address *>
+  %div
+    %strong Languages:
+    <*= this.languages *>
+  %div
+    %strong dbpedia:
+    %a{:href => "<*= this.uri *>".html_safe, :target => "_blank"} <*= this.uri *>
+  %div
+    %strong OCW:
+    %a{:href => "<*= this.ocw *>".html_safe, :target => "_blank"} <*= this.ocw *>
+  ]]>

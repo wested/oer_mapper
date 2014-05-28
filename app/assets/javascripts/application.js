@@ -12,5 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.jqote2
+//= require angular
+//= require bootstrap
+//= require angular-resource
+//= require angular-pageslide-directive
+//= require leafletjs-0.7.2
+//= require angular/application
+//= require angular/services/services
+//= require_directory ./angular/services
+//= require angular/controllers/controllers
+//= require_directory ./angular/controllers
 //= require_tree .
