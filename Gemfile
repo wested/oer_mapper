@@ -13,6 +13,11 @@ gem 'haml-rails'
 gem 'mysql2'
 gem 'rolify'
 gem 'simple_form'
+gem 'angularjs-rails'
+gem 'rabl'
+# Also add either `oj` or `yajl-ruby` as the JSON parser
+gem 'oj'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
