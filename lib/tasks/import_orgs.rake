@@ -1,11 +1,13 @@
+require 'rest_client'
+
 desc "import orgs"
 task :import_orgs => :environment do
   #TODO: create migration to create Serendipity user, then when import data link all orgs to that user
 
   #TODO: change to pull from Serendipity
-  # http://serendipity.utpl.edu.ec/map/bdd.php
-  # say expect json, maybe don't need to say parse
-  input_org_data = JSON.parse(File.read('data_import/serendipity_data.json'))
+  input_org_data = RestClient.get 'http://serendipity.utpl.edu.ec/map/bdd.php', { :accept => :json }
+
+  # input_org_data = JSON.parse(File.read('data_import/serendipity_data.json'))
   input_org_data["university"].each do |u|
     # org = Organization.update_or_initialize
     org = Organization.new(
@@ -13,8 +15,8 @@ task :import_orgs => :environment do
                             url: u["universityURL"],
                             uri:  u["universityURI"],
                             ocw: u["universityOCWURL"],
-                            description: u["universityDescription"]
-                            # user_id - serendipity user
+                            description: u["universityDescription"],
+                            user_id: 1
 
       )
     # all one rake task including everything
