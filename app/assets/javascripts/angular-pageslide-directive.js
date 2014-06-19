@@ -1,4 +1,4 @@
-//  https://github.com/dpiccone/ng-pageslide/blob/master/src/angular-pageslide-directive.js
+//  https://github.com/dpiccone/ng-pageslide
 
 // IMPORTANT NOTE: Added pg-custom-position and pg-parent .  So if you upgrade make sure to put these back in !!!
 
@@ -27,7 +27,6 @@ pageslideDirective.directive('pageslide', [
                 param.speed = attrs.psSpeed || '0.5';
                 param.size = attrs.psSize || '300px';
                 param.className = attrs.psClass || 'ng-pageslide';
-                param.psParent = attrs.psParent || document.body;
                 param.psParent = document.getElementById(attrs.psParent) || document.body;
 
                 /* DOM manipulation */

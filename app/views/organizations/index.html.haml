@@ -1,40 +1,62 @@
-%div#map-container
-  %div#map
+.row
+  .col-md-1.col-xs-1.instructions
+    %div#legend-open
+      %a.right{"ng-click"=>"alert('foo')","pageslide" => "left", "href"=>"#legend", "ps-speed"=>"0.5", "ps-parent" => "map-container","ps-custom-position"=>"absolute"} Open Link
+  .col-md-11.col-xs-11.map
+    %div#map-container
 
-%a{"pageslide" => "left", "href"=>"#legend", "ps-speed"=>"0.5", "ps-parent" => "map-container","ps-custom-position"=>"absolute"} Link text
+      %div#map
 
-%div#content{"ng-controller"=>'OrganizationCtrl'}
+.row
+  .col-md-12
+    %div#content{"ng-controller"=>'OrganizationCtrl'}
 
-  %button{"ng-click" => 'getOrgs()'} Get Orgs
+      %button{"ng-click" => 'getOrgs()'} Get Orgs
 
-  %div{"ng-show" => 'organizations.length > 0'}
-    %table
-      %thead>
-        %tr
-          %th{colspan:"4"} Organizations
-      %tbody>
-        = render "organizations/org_row"
+      %div{"ng-show" => 'organizations.length > 0'}
+        %table
+          %thead>
+            %tr
+              %th{colspan:"4"} Organizations
+          %tbody>
+            = render "organizations/org_row"
 
 .page-slide#legend
+  .row.padding-bottom
+    .col-md-2.col-md-offset-9
+
+      %a{id: "legend-close"}
+        %img{src:asset_path('slider_close.jpg')}
+
   .row
-    .col-md-1.col-md-offset-9
-
-      %button{id: "legend-close", type: "button", class:"btn btn-default btn-lg"}
-        %span{class:"glyphicon glyphicon-circle-arrow-left"}
-
-
-  .row
-    .col-md-10.col-md-offset-1
+    .col-md-12
       %p
         The OER World Map is an interactive map of OER providers around the world and a tool to explore information about OER, to draw connections, and to see new possibilities for partnerships, learning, and topics you care about.
       %p
         Search for an OER provider by keyword, or select a subject area to display OER Providers with OER Materials in this area.
-  .row.search
-    .col-md-7.col-md-offset-1.label
-      SEARCH BY KEYWORD
   .row
-    .col-md-10.col-md-offset-1
-      %input.form-control{"ng-model"=>"query"}
+    .col-md-12.search-label
+      %p
+        %span
+          SEARCH BY KEYWORD
+  .row
+    .col-md-12
+      %p
+        %input.form-control{"ng-model"=>"query"}
+
+  .row
+    .col-md-12.search-label
+      %p
+        %span
+          SUBJECT AREAS
+      %table
+        %tbody
+          - Subject::SUBJECT_AREAS.each do |subject|
+            %tr
+              %td= render "map_circle_svg", css_class:subject.gsub(" ","").gsub("&","").downcase
+              %td= subject
+              %td= radio_button_tag subject,false
+
 
 %script{:type=>"text/x-jqote-template", :id=>"marker_tmpl"}
   <![CDATA[

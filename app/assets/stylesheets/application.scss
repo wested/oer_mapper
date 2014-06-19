@@ -1,0 +1,146 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require leafletjs-0.7.2
+ *= require_tree .
+ */
+
+.right {
+  float: right;
+}
+
+.padding-bottom {
+  padding-bottom: 10px;
+}
+.container {
+  margin-top: 80px;
+
+  .col-md-1.col-xs-1.instructions {
+    padding-right: 0px;
+  }
+  .col-md-11.col-xs-11.map {
+    padding-left: 0px;
+  }
+  #legend-open {
+    cursor:pointer;
+    height: 620px;
+    margin-top:200px;
+
+    a {
+//      margin-top: -389px;
+//      margin-left: -26px;
+      background-image:url(image-path("show_instructions.png"));
+      display:block;
+      height: 160px;
+      width: 26px;
+      text-indent:-9999px;  // hides the text
+    }
+
+  }
+
+  #map-container {
+
+    position: relative;
+
+    #map {
+      height: 620px;
+      width: 100%;
+      padding-top: 15px;
+
+
+    }
+
+  }
+
+  #legend #legend-close img{
+    height: 30px;
+    cursor: pointer;
+  }
+}
+
+circle.arts {
+  fill: #E0FF00;
+}
+
+circle.business {
+  fill: #72B147;
+}
+
+circle.health {
+  fill: #83B5BA;
+}
+
+circle.informationmedialiteracy {
+  fill: #3488BE;
+}
+
+circle.languagearts {
+  fill: #3B3CC7;
+}
+
+circle.mathematicsstatistics {
+  fill: #7A5CBB;
+}
+
+circle.science {
+  fill: #D16E8A;
+}
+
+circle.socialstudies {
+  fill: #CD534B;
+}
+
+circle.worldlanguages {
+  fill: #DDA629;
+}
+
+.ng-pageslide {
+  background: #272B30;
+  opacity: .7;
+  .page-slide {
+    margin-top: 10px;
+    padding: 0px 10px 5px 10px;
+    .search-label {
+      span {
+        font-weight: bold;
+        font-size: 75%;
+        margin-bottom: 0px;
+      }
+    }
+    table {
+      width: 100%;
+      background-color: #272b30;
+    }
+    p {
+      text-align: left;
+    }
+    .form-control {
+      height: 30px;
+    }
+  }
+}
+
+.clear-fix {
+  clear: both;
+}
+
+// Bootstrap overrides
+.navbar-brand {
+  height:auto;
+  .name {
+    font-style: italic;
+  }
+  .world {
+    margin-top: 10px;
+    font-size: 40px;
+  }
+}
+
