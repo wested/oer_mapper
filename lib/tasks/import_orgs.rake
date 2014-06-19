@@ -1,22 +1,34 @@
+require 'rest_client'
+
 desc "import orgs"
 task :import_orgs => :environment do
   #TODO: create migration to create Serendipity user, then when import data link all orgs to that user
 
   #TODO: change to pull from Serendipity
-  # http://serendipity.utpl.edu.ec/map/bdd.php
-  # say expect json, maybe don't need to say parse
-  input_org_data = JSON.parse(File.read('data_import/serendipity_data.json'))
-  input_org_data["university"].each do |u|
-    # org = Organization.update_or_initialize
-    org = Organization.new(
-                            name: u["universityName"],
-                            url: u["universityURL"],
-                            uri:  u["universityURI"],
-                            ocw: u["universityOCWURL"],
-                            description: u["universityDescription"]
-                            # user_id - serendipity user
+  source_org_data = RestClient.get 'http://serendipity.utpl.edu.ec/map/bdd.php', { :accept => :json }
 
-      )
+  source_org_data = source_org_data.gsub("Notice: Undefined index: callback in \/var\/www\/serendipity\/map\/bdd.php on line 47\n(", '').chop
+  input_org_data_json = JSON.parse(source_org_data)
+
+  input_org_data_json["university"].each do |u|
+    # org = Organization.update_or_initialize
+
+    # look at this! http://stackoverflow.com/questions/3024010/create-or-update-method-in-rails
+    # separate calls for find_or_create_by name, then update_attributes
+
+    Organization.find_or_create_by!(name: u["universityName"]) do |o|
+                            o.url = u["universityURL"]
+                            o.uri =  u["universityURI"]
+                            o.ocw = u["universityOCWURL"]
+                            o.description = u["universityDescription"]
+
+        end
+
+  # deal with adding serendipity user id
+
+
+
+
     # all one rake task including everything
     # org.build_address(
     #                           organization_id: org_id,
@@ -28,7 +40,6 @@ task :import_orgs => :environment do
 #                             address: u["universityAddress"]
 #     )
     # etc.
-    org.save
   end
 end
 
