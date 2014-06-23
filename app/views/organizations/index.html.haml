@@ -1,7 +1,7 @@
 .row
   .col-md-1.col-xs-1.instructions
     %div#legend-open
-      %a.right{"ng-click"=>"alert('foo')","pageslide" => "left", "href"=>"#legend", "ps-speed"=>"0.5", "ps-parent" => "map-container","ps-custom-position"=>"absolute"} Open Link
+      %a.right{"ng-show"=>"instructionControl.show","ng-click"=>"instructionControl.show = !instructionControl.show","pageslide" => "left", "href"=>"#legend", "ps-speed"=>"0.5", "ps-parent" => "map-container","ps-custom-position"=>"absolute"} Open Link
   .col-md-11.col-xs-11.map
     %div#map-container
 
@@ -9,9 +9,7 @@
 
 .row
   .col-md-12
-    %div#content{"ng-controller"=>'OrganizationCtrl'}
-
-      %button{"ng-click" => 'getOrgs()'} Get Orgs
+    %div
 
       %div{"ng-show" => 'organizations.length > 0'}
         %table
@@ -21,57 +19,6 @@
           %tbody>
             = render "organizations/org_row"
 
-.page-slide#legend
-  .row.padding-bottom
-    .col-md-2.col-md-offset-9
+= render "map_slide"
 
-      %a{id: "legend-close"}
-        %img{src:asset_path('slider_close.jpg')}
-
-  .row
-    .col-md-12
-      %p
-        The OER World Map is an interactive map of OER providers around the world and a tool to explore information about OER, to draw connections, and to see new possibilities for partnerships, learning, and topics you care about.
-      %p
-        Search for an OER provider by keyword, or select a subject area to display OER Providers with OER Materials in this area.
-  .row
-    .col-md-12.search-label
-      %p
-        %span
-          SEARCH BY KEYWORD
-  .row
-    .col-md-12
-      %p
-        %input.form-control{"ng-model"=>"query"}
-
-  .row
-    .col-md-12.search-label
-      %p
-        %span
-          SUBJECT AREAS
-      %table
-        %tbody
-          - Subject::SUBJECT_AREAS.each do |subject|
-            %tr
-              %td= render "map_circle_svg", css_class:subject.gsub(" ","").gsub("&","").downcase
-              %td= subject
-              %td= radio_button_tag subject,false
-
-
-%script{:type=>"text/x-jqote-template", :id=>"marker_tmpl"}
-  <![CDATA[
-  %h3
-    %a{:href => "<*= this.url *>".html_safe, :target => "_blank"} <*= this.name *>
-  %div
-    %strong Address:
-    <*= this.address *>
-  %div
-    %strong Languages:
-    <*= this.languages *>
-  %div
-    %strong dbpedia:
-    %a{:href => "<*= this.uri *>".html_safe, :target => "_blank"} <*= this.uri *>
-  %div
-    %strong OCW:
-    %a{:href => "<*= this.ocw *>".html_safe, :target => "_blank"} <*= this.ocw *>
-  ]]>
+= render "tooltip_template"

@@ -1,0 +1,38 @@
+.page-slide#legend
+  .row.padding-bottom
+    .col-md-2.col-md-offset-9
+
+      %a{id: "legend-close","ng-click"=>"instructionControl.show = !instructionControl.show"}
+        %img{src:asset_path('slider_close.jpg')}
+
+  .row
+    .col-md-12
+      %p
+        The OER World Map is an interactive map of OER providers around the world and a tool to explore information about OER, to draw connections, and to see new possibilities for partnerships, learning, and topics you care about.
+      %p
+        Search for an OER provider by keyword, or select a subject area to display OER Providers with OER Materials in this area.
+  .row
+    .col-md-12.search-label
+      %p
+        %span
+          SEARCH BY KEYWORD
+  .row
+    .col-md-12
+      %p
+        = render "map_circle_svg", css_class:"all"
+        %input.form-control{"ng-model"=>"searchTerms"}
+        %img.search-icon{src:image_path("search-icon.png"),"ng-click" => "search()"}
+
+  .row
+    .col-md-12.search-label
+      %p
+        %span
+          SUBJECT AREAS
+      %table
+        %tbody
+          - Subject.all.each_with_index  do |subject, i|
+            - css_class = subject_area_css_class_name(subject.name)
+            %tr
+              %td= render "map_circle_svg", css_class:css_class
+              %td= subject.name
+              %td= radio_button_tag 'subject',css_class,(i==0? true:false), "ng-checked" => "currentSubject ==='#{css_class}'","ng-click"=>"setSubject('#{css_class}')"

@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require angular-resource
 //= require angular-pageslide-directive
+//= require angular-ui-router.min
 //= require leafletjs-0.7.2
 //= require angular/application
 //= require angular/services/services

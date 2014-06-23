@@ -31,7 +31,7 @@
   }
   #legend-open {
     cursor:pointer;
-    height: 620px;
+//    height: 620px;
     margin-top:200px;
 
     a {
@@ -57,13 +57,52 @@
 
 
     }
-
   }
 
   #legend #legend-close img{
     height: 30px;
     cursor: pointer;
   }
+}
+
+.ng-pageslide {
+  background: #272B30;
+  opacity: .7;
+  .page-slide {
+    margin-top: 10px;
+    padding: 0px 10px 5px 10px;
+    .search-label {
+      span {
+        font-weight: bold;
+        font-size: 75%;
+        margin-bottom: 0px;
+      }
+    }
+    table {
+      width: 100%;
+      background-color: #272b30;
+    }
+    p {
+      text-align: left;
+    }
+    .form-control {
+      margin-left: 5px;
+      height: 30px;
+      width: 75%;
+      display: inline;
+      padding: 4px 6px;
+    }
+    .search-icon {
+      width: 25px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+
+}
+
+circle.all {
+  fill: #F74AF1;
 }
 
 circle.arts {
@@ -102,34 +141,54 @@ circle.worldlanguages {
   fill: #DDA629;
 }
 
-.ng-pageslide {
-  background: #272B30;
-  opacity: .7;
-  .page-slide {
-    margin-top: 10px;
-    padding: 0px 10px 5px 10px;
-    .search-label {
-      span {
-        font-weight: bold;
-        font-size: 75%;
-        margin-bottom: 0px;
-      }
-    }
-    table {
-      width: 100%;
-      background-color: #272b30;
-    }
-    p {
-      text-align: left;
-    }
-    .form-control {
-      height: 30px;
-    }
-  }
-}
-
 .clear-fix {
   clear: both;
+}
+
+.svg-marker {
+  cursor:inherit;
+}
+
+.svg-marker div {
+  cursor:pointer;
+  height:10px;
+  width:10px;
+  padding:0 8%;
+  white-space: nowrap;
+  color:#fff;
+  background-size:100%;
+
+}
+
+.svg-marker div.all {
+  background-image: url(asset-path("all_circle.svg"));
+}
+.svg-marker div.arts {
+  background-image: url(asset-path("arts_circle.svg"));
+}
+.svg-marker div.worldlanguages {
+  background-image: url(asset-path("worldlanguages_circle.svg"));
+}
+.svg-marker div.socialstudies {
+  background-image: url(asset-path("socialstudies_circle.svg"));
+}
+.svg-marker div.science {
+  background-image: url(asset-path("science_circle.svg"));
+}
+.svg-marker div.mathematicsstatistics {
+  background-image: url(asset-path("mathematicsstatistics_circle.svg"));
+}
+.svg-marker div.languagearts {
+  background-image: url(asset-path("languagearts_circle.svg"));
+}
+.svg-marker div.informationmedialiteracy {
+  background-image: url(asset-path("informationmedialiteracy_circle.svg"));
+}
+.svg-marker div.health {
+  background-image: url(asset-path("health_circle.svg"));
+}
+.svg-marker div.business {
+  background-image: url(asset-path("business_circle.svg"));
 }
 
 // Bootstrap overrides
