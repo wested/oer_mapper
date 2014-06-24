@@ -21,38 +21,36 @@
   padding-bottom: 10px;
 }
 .container {
-  margin-top: 80px;
+  margin-top: 60px;
 
-  .col-md-1.col-xs-1.instructions {
-    padding-right: 0px;
-  }
-  .col-md-11.col-xs-11.map {
-    padding-left: 0px;
-  }
-  #legend-open {
-    cursor:pointer;
-//    height: 620px;
-    margin-top:200px;
+  .instructions {
+    float:left;
+    width: 3%;
+    #legend-open {
+      cursor:pointer;
+      //    height: 620px;
+      margin-top:200px;
 
-    a {
-//      margin-top: -389px;
-//      margin-left: -26px;
-      background-image:url(image-path("show_instructions.png"));
-      display:block;
-      height: 160px;
-      width: 26px;
-      text-indent:-9999px;  // hides the text
+      a {
+        //      margin-top: -389px;
+        //      margin-left: -26px;
+        background-image:url(image-path("show_instructions.png"));
+        display:block;
+        height: 160px;
+        width: 26px;
+        text-indent:-9999px;  // hides the text
+      }
+
     }
-
   }
 
   #map-container {
 
-    position: relative;
+//    position: relative;
 
     #map {
       height: 620px;
-      width: 100%;
+      width: 97%;
       padding-top: 15px;
 
 
@@ -62,6 +60,57 @@
   #legend #legend-close img{
     height: 30px;
     cursor: pointer;
+  }
+
+  .stats {
+    margin-top: 10px;
+    .stats-header {
+      border-top: 2px solid;
+    }
+    .stats-header.arts {
+      border-top-color: #E0FF00;
+      ul {
+        color: #E0FF00;
+      }
+    }
+
+    .stats-header.business {
+      border-top-color: #72B147;
+    }
+
+    .stats-header.health {
+      border-top-color: #83B5BA;
+    }
+
+    .stats-header.informationmedialiteracy {
+      border-top-color: #3488BE;
+    }
+
+    .stats-header.languagearts {
+      border-top-color: #3B3CC7;
+    }
+
+    .stats-header.mathematicsstatistics {
+      border-top-color: #7A5CBB;
+    }
+
+    .stats-header.science {
+      border-top-color: #D16E8A;
+    }
+
+    .stats-header.socialstudies {
+      border-top-color: #CD534B;
+    }
+
+    .stats-header.worldlanguages {
+      border-top-color: #DDA629;
+    }
+
+    .provider-count {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
   }
 }
 
@@ -195,11 +244,14 @@ circle.worldlanguages {
 .navbar-brand {
   height:auto;
   .name {
+    font-size: 14px;
+    vertical-align: top;
     font-style: italic;
   }
   .world {
     margin-top: 10px;
-    font-size: 40px;
+    font-size: 30px;
+    margin-left: 15px;
   }
 }
 

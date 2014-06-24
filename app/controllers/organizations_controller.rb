@@ -2,7 +2,7 @@ class OrganizationsController < ApplicationController
 
   respond_to :json, :html
   def index
-    @organizations = Organization.all
+    @organizations = params[:subject] ? Organization.for_subject(params[:subject]).all : Organization.all
   end
 
   def show

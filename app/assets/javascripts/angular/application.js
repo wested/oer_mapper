@@ -7,10 +7,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
         // HOME STATES AND NESTED VIEWS ========================================
-        .state('root', {
-            url: '',
-            template: '',
-            controller: 'OrganizationCtrl'
-        });
+        .state('organizations', {
+            url: '/organizations?subject_area',
+            template: $("#subject_stats_tmpl").jqote(),
+            controller: 'OrganizationSubjectCtrl'
+        })
+
 
 });

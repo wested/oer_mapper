@@ -1,24 +1,17 @@
 .row
-  .col-md-1.col-xs-1.instructions
-    %div#legend-open
-      %a.right{"ng-show"=>"instructionControl.show","ng-click"=>"instructionControl.show = !instructionControl.show","pageslide" => "left", "href"=>"#legend", "ps-speed"=>"0.5", "ps-parent" => "map-container","ps-custom-position"=>"absolute"} Open Link
-  .col-md-11.col-xs-11.map
+  .col-md-12.col-xs-12
+    .instructions
+      %div#legend-open
+        %a.right{"ng-show"=>"instructionControl.show","ng-click"=>"instructionControl.show = !instructionControl.show","pageslide" => "left", "href"=>"#legend", "ps-speed"=>"0.5", "ps-parent" => "map","ps-custom-position"=>"absolute"} Open Link
     %div#map-container
 
       %div#map
-
 .row
-  .col-md-12
-    %div
+  .col-md-12.stats{"ui-view"=>true, "ng-show"=>"currentSubject !== 'all'"}
 
-      %div{"ng-show" => 'organizations.length > 0'}
-        %table
-          %thead>
-            %tr
-              %th{colspan:"4"} Organizations
-          %tbody>
-            = render "organizations/org_row"
+
 
 = render "map_slide"
 
 = render "tooltip_template"
+= render "subject_stats_template"

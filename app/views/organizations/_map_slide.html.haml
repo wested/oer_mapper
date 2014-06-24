@@ -35,4 +35,4 @@
             %tr
               %td= render "map_circle_svg", css_class:css_class
               %td= subject.name
-              %td= radio_button_tag 'subject',css_class,(i==0? true:false), "ng-checked" => "currentSubject ==='#{css_class}'","ng-click"=>"setSubject('#{css_class}')"
+              %td= radio_button_tag 'subject',css_class,(i==0? true:false), "ng-checked" => "currentSubject ==='#{css_class}'","ng-click"=>"setSubject('#{css_class}','#{subject.name}')"
