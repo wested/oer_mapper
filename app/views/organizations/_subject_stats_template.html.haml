@@ -8,7 +8,8 @@
           {{ displaySubject }} OCR Providers Worldwide
         .provider-count {{ organizationsBySubject.length }}
         .add-data
-          = image_tag(image_path("green_btn.png"))
+          %a{"ui-sref"=>"organizations.new"}
+            = image_tag(image_path("green_btn.png"))
 
     .col-md-3
       .stats-header{class:"{{currentSubject}}"}
@@ -22,5 +23,6 @@
     .col-md-3
       .stats-header{class:"{{currentSubject}}"}
         %h4 Top countries with the most {{ displaySubject }} providers
-
+  .row
+    .col-md-12{"ui-view"=>'new'}
   ]]>

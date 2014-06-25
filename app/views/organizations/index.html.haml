@@ -1,4 +1,4 @@
-.row
+.row{"ng-show"=>"$state.current === undefined || $state.current.name === 'organizations'"}
   .col-md-12.col-xs-12
     .instructions
       %div#legend-open
@@ -7,7 +7,10 @@
 
       %div#map
 .row
-  .col-md-12.stats{"ui-view"=>true, "ng-show"=>"currentSubject !== 'all'"}
+  .col-md-12.stats{"ui-view"=>true,"ng-show"=>"$state.current === undefined || $state.current.name === 'organizations'"}
+
+
+
 
 
 

@@ -3,11 +3,13 @@ oerMapperControllers.controller("OrganizationSubjectCtrl", ['$state','$scope', '
 //    PRIVATE VARIABLES
 
 //    PUBLIC PROPERTIES
-
+    $scope.goToCreate = function () {
+        $state.transitionTo('organizations.new')
+    };
 
 //    PRIVATE FUNCTIONS
 
 
 //    INIT
-
+    console.log($state.current.name)
 }]);

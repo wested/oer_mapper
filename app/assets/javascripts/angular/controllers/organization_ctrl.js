@@ -68,6 +68,7 @@ oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'Organiz
 //    INIT
     getOrgs();
     getOrgsBySubject();
+    console.log($state.current.name)
     $state.transitionTo('organizations');
 
 }]);
