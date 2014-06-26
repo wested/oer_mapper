@@ -19,7 +19,7 @@
   .row
     .col-md-12
       %p
-        = render "map_circle_svg", css_class:"all"
+        = render "organizations/map_circle_svg", css_class:"all"
         %input.form-control{"ng-model"=>"searchTerms"}
         %img.search-icon{src:image_path("search-icon.png"),"ng-click" => "search()"}
 
@@ -33,6 +33,6 @@
           - Subject.all.each_with_index  do |subject, i|
             - css_class = subject_area_css_class_name(subject.name)
             %tr
-              %td= render "map_circle_svg", css_class:css_class
+              %td= render "organizations/map_circle_svg", css_class:css_class
               %td= subject.name
               %td= radio_button_tag 'subject',css_class,(i==0? true:false), "ng-checked" => "currentSubject ==='#{css_class}'","ng-click"=>"setSubject('#{css_class}','#{subject.name}')"

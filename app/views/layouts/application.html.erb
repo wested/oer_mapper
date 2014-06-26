@@ -7,9 +7,10 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-controller="RootCtrl">
+
     <%= render partial: "layouts/nav_bar" %>
-    <div class="container" ng-controller='OrganizationCtrl'>
+    <div class="container" ui-view>
         <%= yield %>
     </div>
 </body>
