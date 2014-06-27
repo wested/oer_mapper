@@ -12,5 +12,7 @@ class Organization < ActiveRecord::Base
 
   # TODO: validation that only 'Serendipity user' can modify these fields
 
+  validates_presence_of :name
+
   scope :for_subject, lambda{|subject| joins(:organizations_subjects => :subject).where(["subjects.name = ?",subject]) }
 end

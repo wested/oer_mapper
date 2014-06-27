@@ -1,4 +1,4 @@
-oerMapperControllers.controller("RootCtrl", ['$state','$scope', 'Organization', function($state,$scope, Organization) {
+oerMapperControllers.controller("RootCtrl", ['$state','$scope', function($state,$scope) {
 
 //    PRIVATE VARIABLES
 
@@ -9,5 +9,5 @@ oerMapperControllers.controller("RootCtrl", ['$state','$scope', 'Organization', 
 
 
 //    INIT
-    $state.transitionTo('organizations.map')
+
 }]);

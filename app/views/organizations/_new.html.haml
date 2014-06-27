@@ -1,1 +1,8 @@
-new template
+%form{name:"form","ng-submit"=>"save()"}
+  %input{name:"organization[name]", type: "text", "ng-model" => "organization.name",required:true}
+  %span.help-block{"ng-show"=>"form.name.$invalid && form.name.$dirty"}
+  %span.help-block{"ng-show"=>"form.input.$error.required"} Required!
+
+
+  %button.btn.btn-primary{type: "submit"} Save
+  = link_to "Cancel", "", "ng-click" => "cancel()"

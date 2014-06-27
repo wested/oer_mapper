@@ -2,7 +2,7 @@ var app = angular.module('OerMapper',['ui.router',"oerMapperServices","oerMapper
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/organizations/map');
 
     $stateProvider
 
@@ -10,7 +10,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('organizations', {
             abstract: true,
             url: '/',
-            templateUrl: 'templates/organizations-index'
+            templateUrl: 'templates/organizations-index',
+            resolve: {
+                // A string value resolves to a service
+                organizationsResource: 'organizationsResource',
+
+                // A function value resolves to the return
+                // value of the function
+                organizations: function(organizationsResource) {
+                    return organizationsResource.query().$promise;
+                }
+            }
         })
         .state('organizations.map', {
             url: 'organizations/map',

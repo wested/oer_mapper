@@ -1,4 +1,4 @@
-oerMapperControllers.controller("OrganizationSubjectCtrl", ['$state','$scope', 'Organization', function($state,$scope, Organization) {
+oerMapperControllers.controller("OrganizationSubjectCtrl", ['$state','$scope', 'Organization', function($state,$scope) {
 
 //    PRIVATE VARIABLES
 

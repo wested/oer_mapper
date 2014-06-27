@@ -1,5 +1,5 @@
 
-oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'Organization', function($state,$scope, Organization) {
+oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'organizations', function($state,$scope, organizations) {
 
 //    PRIVATE VARIABLES
     var mapper = new Mapper('map',39.2979,-76.5908,3);
@@ -12,7 +12,7 @@ oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'Organiz
 
     $scope.searchSubject = "all";    // when we search we're dealing with all subjects
     
-    $scope.organizations = null;
+    $scope.organizations = organizations;
     $scope.instructionControl = {show: true};
 
     $scope.setSubject = function(newSubject, newDisplaySubject) {
@@ -21,8 +21,7 @@ oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'Organiz
             $scope.currentSubject = newSubject;
             $scope.displaySubject = newDisplaySubject;
 
-            getOrgsBySubject();
-            setMarkers();
+            setOrgsBySubject();
         }
 
     };
@@ -35,7 +34,7 @@ oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'Organiz
         // would change this to do the search on the server so it scales......
         var filteredOrg = $.grep($scope.organizations, function( org, i ) {
             for (i = 0; i < terms.length; i++) {
-                if (org.name.toLowerCase().indexOf(terms[i]) > -1 || org.description.toLowerCase().indexOf(terms[i]) > -1 || $.grep(org.languages, function(lang,i){ return lang.toLowerCase().indexOf(terms[i]) > -1}).length > 0) { return org;}
+                if (org.name.toLowerCase().indexOf(terms[i]) > -1 || org.description.toLowerCase().indexOf(terms[i]) > -1 || (org.languages !== undefined && $.grep(org.languages, function(lang,i){ return lang.toLowerCase().indexOf(terms[i]) > -1}).length > 0) ) { return org;}
 
 
             }
@@ -47,27 +46,27 @@ oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'Organiz
 
 
 //    PRIVATE FUNCTIONS
-    var getOrgs = function() {
-//        $scope.organizations = Organization.query(function () { setMarkers(); });
-        $scope.organizations = Organization.query();
-    };
 
-    var getOrgsBySubject = function() {
-        $scope.organizationsBySubject = Organization.query({subject:$scope.currentSubject},function () { setMarkers(); });
+    var setOrgsBySubject = function() {
+        $scope.organizationsBySubject = $.grep($scope.organizations,
+            function( org, i ) {
+                if (org.subjects !== undefined && org.subjects.indexOf($scope.currentSubject) >= 0) {
+                    return org;
+                }
+            });
+        setMarkers();
     };
 
     var setMarkers = function(/*optional*/ orgs) {
         mapper.removeMarkers();
-        var filteredOrgs = orgs === undefined ? $scope.organizations : orgs ;
-        filteredOrgs.forEach(function (org) {
-            if ($scope.currentSubject === $scope.searchSubject) {
-                mapper.addMarker(org.lat, org.long,$scope.currentSubject,org);
-            } else { if (org.subjects.indexOf($scope.currentSubject) >= 0) { mapper.addMarker(org.lat, org.long,$scope.currentSubject,org);} }
-        })
+        var filteredOrgs = orgs === undefined ? $scope.organizationsBySubject : orgs ;
+
+        filteredOrgs.forEach(function (org) {mapper.addMarker(org.lat, org.long,$scope.currentSubject,org)});
+
     };
 
 //    INIT
-    getOrgs();
-    getOrgsBySubject();
+
+    setOrgsBySubject();
 
 }]);
