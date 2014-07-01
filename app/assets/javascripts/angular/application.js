@@ -20,8 +20,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 organizations: function(organizationsResource) {
                     return organizationsResource.query().$promise;
                 }
-            },
-            controller: 'RootCtrl'
+            }
+
         })
         .state('organizations.map', {
             url: 'organizations/map',
