@@ -10,9 +10,11 @@ class Organization < ActiveRecord::Base
   has_many :organizations_subjects
   has_many :subjects, :through => :organizations_subjects
 
+  accepts_nested_attributes_for :address, :subjects
+
   # TODO: validation that only 'Serendipity user' can modify these fields
 
-  validates_presence_of :name
+  validates_presence_of :name, :description
 
   scope :for_subject, lambda{|subject| joins(:organizations_subjects => :subject).where(["subjects.name = ?",subject]) }
 end

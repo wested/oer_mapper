@@ -20,7 +20,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 organizations: function(organizationsResource) {
                     return organizationsResource.query().$promise;
                 }
-            }
+            },
+            controller: 'RootCtrl'
         })
         .state('organizations.map', {
             url: 'organizations/map',
@@ -32,5 +33,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/organizations-new',
             controller: 'OrganizationNewCtrl'
         })
-
+        .state('organizations.edit', {
+            url: 'organizations/edit/:id',
+            templateUrl: 'templates/organizations-edit',
+            controller: 'OrganizationEditCtrl'
+        })
 });

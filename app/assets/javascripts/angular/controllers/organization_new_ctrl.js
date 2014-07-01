@@ -1,17 +1,21 @@
-oerMapperControllers.controller("OrganizationNewCtrl", ['$state','$scope', 'organizationsResource', function($state,$scope, Organization) {
+oerMapperControllers.controller("OrganizationNewCtrl", ['$state','$scope', 'organizationsResource', function($state,$scope, organizationsResource) {
 
 //    PRIVATE VARIABLES
 
 //    PUBLIC PROPERTIES
 
+//    PUBLIC FUNCTIONS
+
+    // concats the validation errors returned from Rails
     $scope.errorMessage = function(name) {
         result = [];
-        _.each($scope.form[name].$error, function(key, value) {
-            result.push(value);
+        $.each($scope.form[name].$error, function(message, value) {
+            result.push(message);
         });
         return result.join(", ");
     };
 
+    // add this to input controls to style when there's an error
     $scope.errorClass = function(name) {
         var s = $scope.form[name];
         return s.$invalid && s.$dirty ? "error" : "";
@@ -31,14 +35,15 @@ oerMapperControllers.controller("OrganizationNewCtrl", ['$state','$scope', 'orga
     };
 
     var failure = function(response) {
-        _.each(response.data, function(errors, key) {
-            _.each(errors, function(e) {
-                $scope.form[key].$dirty = true;
-                $scope.form[key].$setValidity(e, false);
+        $.each(response.data, function(key,errors ) {
+            $.each(errors, function(i,e) {
+                var fullKey = 'organization['+key+']';
+                $scope.form[fullKey].$dirty = true;
+                $scope.form[fullKey].$setValidity(key+" "+e, false);
             });
         });
     };
 
 //    INIT
-    console.log($state.current.name)
+
 }]);

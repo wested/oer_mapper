@@ -1,8 +1,24 @@
-%form{name:"form","ng-submit"=>"save()"}
-  %input{name:"organization[name]", type: "text", "ng-model" => "organization.name",required:true}
-  %span.help-block{"ng-show"=>"form.name.$invalid && form.name.$dirty"}
+= simple_form_for Organization.new, url:"",html: {method:false,name:"form","ng-submit"=>"save()"} do |f|
+  = f.input :name, input_html:{"ng-model" => "organization.name",required:true}
+  %span.help-block{"ng-show"=>"form.name.$invalid && form.name.$dirty"} ERRORS!!
   %span.help-block{"ng-show"=>"form.input.$error.required"} Required!
 
+  = f.input :description, input_html:{"ng-model" => "organization.description"}
+  %span.help-block{"ng-show"=>"form['organization[description]'].$invalid && form['organization[description]'].$dirty"} {{errorMessage('organization[description]')}}
+  %span.help-block{"ng-show"=>"form['organization[description]'].$error.required"} Required!
+
+  = f.input :uri, input_html:{"ng-model" => "organization.uri"}
+  = f.input :url, input_html:{"ng-model" => "organization.url"}
+  = f.input :date_started, as: :string, input_html:{"ng-model" => "organization.date_started"}
+  = f.input :ocw, input_html:{"ng-model" => "organization.ocw"}
+
+  = f.simple_fields_for Address.new do |a|
+    = a.input :address, input_html:{"ng-model" => "organization.address.address"}
+    = a.input :city, input_html:{"ng-model" => "organization.address.city"}
+    = a.input :country,as: :string, input_html:{"ng-model" => "organization.address.country"}
+    = a.input :continent, input_html:{"ng-model" => "organization.address.continent"}
+    = a.input :lat, input_html:{"ng-model" => "organization.address.lat"}
+    = a.input :long, input_html:{"ng-model" => "organization.address.long"}
 
   %button.btn.btn-primary{type: "submit"} Save
   = link_to "Cancel", "", "ng-click" => "cancel()"

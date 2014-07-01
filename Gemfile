@@ -15,6 +15,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'angularjs-rails'
 gem 'rabl'
+gem 'country-select'
 # Also add either `oj` or `yajl-ruby` as the JSON parser
 gem 'oj'
 

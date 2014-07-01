@@ -15,6 +15,7 @@ oerMapperControllers.controller("OrganizationCtrl", ['$state','$scope', 'organiz
     $scope.organizations = organizations;
     $scope.instructionControl = {show: true};
 
+//    PUBLIC FUNCTIONS
     $scope.setSubject = function(newSubject, newDisplaySubject) {
         if (newSubject !== $scope.currentSubject) {
             $scope.searchTerms = ""; // clear out any search terms since we are now mapping by subject area
