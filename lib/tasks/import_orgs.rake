@@ -16,14 +16,19 @@ task :import_orgs => :environment do
     # look at this! http://stackoverflow.com/questions/3024010/create-or-update-method-in-rails
     # separate calls for find_or_create_by name, then update_attributes
 
-    Organization.find_or_create_by!(name: u["universityName"]) do |o|
+    org = Organization.find_or_create_by!(name: u["universityName"]) do |o|
                             o.url = u["universityURL"]
                             o.uri =  u["universityURI"]
                             o.ocw = u["universityOCWURL"]
                             o.description = u["universityDescription"]
+                          
 
         end
-
+        
+        #TODO: change the below user_id hardcoded value to a method that finds the user whith the Serendipity role (role stuff TBD)
+        
+        OrganizationsUser.create(organization_id: org.id, user_id: 1)
+          
   # deal with adding serendipity user id
 
 
