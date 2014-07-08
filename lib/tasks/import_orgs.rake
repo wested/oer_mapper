@@ -24,10 +24,11 @@ task :import_orgs => :environment do
                           
 
         end
-        
-        #TODO: change the below user_id hardcoded value to a method that finds the user whith the Serendipity role (role stuff TBD)
-        
-        OrganizationsUser.create(organization_id: org.id, user_id: 1)
+
+        #TODO: is there a better way?
+        ser_user = User.includes(:roles).where('roles.name' => 'Serendipity')
+
+        OrganizationsUser.find_or_create_by!(organization_id: org.id, user_id: ser_user.first.id)
           
   # deal with adding serendipity user id
 
