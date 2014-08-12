@@ -2,9 +2,7 @@ require 'rest_client'
 
 desc "import orgs"
 task :import_orgs => :environment do
-  #TODO: create migration to create Serendipity user, then when import data link all orgs to that user
-
-  #TODO: change to pull from Serendipity
+  
   source_org_data = RestClient.get 'http://serendipity.utpl.edu.ec/map/bdd.php', { :accept => :json }
 
   source_org_data = source_org_data.gsub("Notice: Undefined index: callback in \/var\/www\/serendipity\/map\/bdd.php on line 47\n(", '').chop
@@ -14,7 +12,7 @@ task :import_orgs => :environment do
     # org = Organization.update_or_initialize
 
     # look at this! http://stackoverflow.com/questions/3024010/create-or-update-method-in-rails
-    # separate calls for find_or_create_by name, then update_attributes
+    # separate calls for find_or_create_by name, then update_attributes.  lines 17-21 only updates attributes if you are creating a new org, doesn't update existing org attributes.
 
     org = Organization.find_or_create_by!(name: u["universityName"]) do |o|
                             o.url = u["universityURL"]
@@ -25,15 +23,10 @@ task :import_orgs => :environment do
 
         end
 
-        #TODO: is there a better way?
         ser_user = User.includes(:roles).where('roles.name' => 'Serendipity')
 
         OrganizationsUser.find_or_create_by!(organization_id: org.id, user_id: ser_user.first.id)
-          
-  # deal with adding serendipity user id
-
-
-
+        
 
     # all one rake task including everything
     # org.build_address(
